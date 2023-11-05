@@ -4,10 +4,14 @@
     </li>
   </ul> -->
 
+<p>{{data | json}}</p>
 
-
-
-  <ng-container *ngIf="data | async ; else loading">
-    {{ data }}
+  <ng-container *ngIf="data ; else loading">
+    <div>
+      <li *ngFor="let btn of range">
+        <button (click)="getPaginationData(btn)" class="bg-black p-3 rounded-md w-24 text-2xl m-10 text-white">{{btn}}</button>
+      </li>
+    </div>
+    
   </ng-container>
   <ng-template #loading>Loading...</ng-template>
