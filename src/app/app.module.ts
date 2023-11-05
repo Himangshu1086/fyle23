@@ -3,16 +3,30 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from  '@angular/common/http';
+import { RouterModule } from '@angular/router';
+
+import { GithubProfileComponent } from './components/github-profile/github-profile.component';
+import { HomeComponent } from './components/home/home.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GithubProfileComponent,
+    HomeComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot([
+      {path:'', component:HomeComponent},
+      {path: 'profile', component: GithubProfileComponent}
+    ]),
   ],
-  providers: [],
+  providers: [HomeComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+

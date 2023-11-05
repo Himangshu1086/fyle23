@@ -1,0 +1,17 @@
+<div class="grid h-screen place-items-center">
+  <div class="flex flex-col">
+    <input
+      type="text"
+      class="rounded-md border-slate-950 border-2 p-2 w-96 text-black"
+      placeholder="Enter github username..."
+      (keyup)="setUsername($event)"
+    />
+    <button
+      routerLink="profile"
+      class="bg-black rounded-md text-white w-40 p-3 m-auto mt-5"
+      (click)="handleRepoListClick()"
+    >
+      View Profile
+    </button>
+  </div>
+</div>

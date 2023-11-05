@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ApiService } from './services/api.service';
 
 @Component({
@@ -12,6 +12,7 @@ export class AppComponent implements OnInit{
   ) {}
 
   ngOnInit() {
-    this.apiService.getUser('johnpapa').subscribe(console.log);
+    this.apiService.getUser('sibashish99').subscribe(console.log);
   }
+  
 }

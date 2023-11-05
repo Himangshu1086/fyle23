@@ -1,0 +1,13 @@
+<!-- <ul *ngIf="repoList">
+    <li *ngFor="let repo of repoList">
+      {{ repo.name }}
+    </li>
+  </ul> -->
+
+
+
+
+  <ng-container *ngIf="data | async ; else loading">
+    {{ data }}
+  </ng-container>
+  <ng-template #loading>Loading...</ng-template>
