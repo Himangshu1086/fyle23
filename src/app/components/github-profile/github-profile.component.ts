@@ -19,20 +19,8 @@ export class GithubProfileComponent {
 
   userProfile: any;
 
-  selectedOption: number;
+  selectedOption: number; // select the custom per_page 
 
-
-  getOption(){
-    this.per_page = this.selectedOption;
-    this.apiService
-      .getReposListApi(this.user, this.page, this.per_page)
-      .subscribe((res:any) => {
-        this.data = res.body;
-        let linkHeader = res.headers.get('Link')
-        this.totalPage = this.getTotalPages(linkHeader)
-        this.range = Array(this.totalPage).fill(0).map((_, index) => index + 1);
-      })
-  }
 
   ngOnInit() {
     this.user = this.apiService.username;
@@ -48,7 +36,18 @@ export class GithubProfileComponent {
     this.apiService.getUser(this.user).subscribe(res=> this.userProfile = res);
   }
 
-
+  // function to show the repo list with per_page 
+  getOption(){
+    this.per_page = this.selectedOption;
+    this.apiService
+      .getReposListApi(this.user, 1, this.per_page)
+      .subscribe((res:any) => {
+        this.data = res.body;
+        let linkHeader = res.headers.get('Link')
+        this.totalPage = this.getTotalPages(linkHeader)
+        this.range = Array(this.totalPage).fill(0).map((_, index) => index + 1);
+      })
+  }
 
   getPaginationData(page:number){
     console.log(page)

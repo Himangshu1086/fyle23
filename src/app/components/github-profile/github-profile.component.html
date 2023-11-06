@@ -1,5 +1,5 @@
-<ng-container *ngIf="data ; else loading">
-    <div class="flex flex-col p-10 w-full mb-20">
+<ng-container *ngIf="data; else loading">
+    <div class="flex flex-col p-10 w-full">
       <!-- github name and profile pic -->
       <div class="flex w-full">
         <div class=" flex rounded-full bg-gray-100 w-40 h-40 p-1"> <!--image-->
@@ -31,7 +31,7 @@
       </div>
     </div>
     <!-- Pagination -->
-    <div class="flex flex-col w-full justify-start items-center">
+    <div class="flex flex-col w-full justify-start items-center mb-20">
       <div id="pagination" class="flex w-96 justify-start overflow-x-scroll">
         <div  *ngFor="let btn of range">
           <button  (click)="getPaginationData(btn)" class="bg-black p-1 w-14 m-1 text-sm bg-transparent border-2 border-gray-400">{{btn}}</button>
