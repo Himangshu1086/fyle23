@@ -16,6 +16,8 @@ export class GithubProfileComponent {
   totalPage :number = 1 ;
   range: any[] = new Array(this.totalPage);  // to create pagination in the frontend
 
+  userProfile: any;
+
   ngOnInit() {
     this.user = this.apiService.username;
     this.apiService
@@ -27,6 +29,8 @@ export class GithubProfileComponent {
         this.range = Array(this.totalPage).fill(0).map((_, index) => index + 1);
         console.log(this.data)
       })
+
+    this.apiService.getUser(this.user).subscribe(res=> this.userProfile = res);
   }
 
   getPaginationData(page:number){
