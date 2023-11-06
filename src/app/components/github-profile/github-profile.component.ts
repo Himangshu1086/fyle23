@@ -21,6 +21,7 @@ export class GithubProfileComponent {
 
   selectedOption: number; // select the custom per_page 
 
+  errorMessage: any; // error handling
 
   ngOnInit() {
     this.user = this.apiService.username;
@@ -31,7 +32,11 @@ export class GithubProfileComponent {
         let linkHeader = res.headers.get('Link')
         this.totalPage = this.getTotalPages(linkHeader)
         this.range = Array(this.totalPage).fill(0).map((_, index) => index + 1);
-      })
+      },
+      (error) =>{
+        this.errorMessage = error;
+      }
+      )
 
     this.apiService.getUser(this.user).subscribe(res=> this.userProfile = res);
   }
@@ -46,6 +51,8 @@ export class GithubProfileComponent {
         let linkHeader = res.headers.get('Link')
         this.totalPage = this.getTotalPages(linkHeader)
         this.range = Array(this.totalPage).fill(0).map((_, index) => index + 1);
+      },(error) =>{
+        this.errorMessage = error;
       })
   }
 
@@ -54,6 +61,8 @@ export class GithubProfileComponent {
     this.page = page;
     this.apiService.getReposListApi(this.user,page,this.per_page).subscribe(res =>{
       this.data = res.body;
+    },(error) =>{
+      this.errorMessage = error;
     })
   }
 

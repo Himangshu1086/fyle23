@@ -41,3 +41,23 @@ Run `ng serve` for a dev server. Navigate to http://localhost:4200/. The app wil
 
 Visit the [Angular Documentation](https://angular.io/guide/styleguide) to learn more.
 Styling is to be strictly done with [Tailwind](https://tailwindcss.com/docs/installation).
+
+
+
+# How to use this app
+
+### In the home page 
+- enter the github user name and click on view profile.
+- the app will route to profile 
+
+### In the profile page
+- pagination is added
+- user can view repo list based on custom per page number.
+
+### Unit Testing
+        run  ng test
+
+-       In api.service.spec.ts test is performed for api services
+-       In github-profile.spec.ts UT is performed for github-profile component.
+
+

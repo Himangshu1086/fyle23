@@ -1,3 +1,6 @@
+<div *ngIf="errorMessage">
+  <h1>{{errorMessage}}</h1>
+</div>
 <ng-container *ngIf="data; else loading">
     <div class="flex flex-col p-10 w-full">
       <!-- github name and profile pic -->
