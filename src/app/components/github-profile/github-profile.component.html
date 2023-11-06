@@ -1,6 +1,4 @@
-
-  <ng-container *ngIf="data ; else loading">
-
+<ng-container *ngIf="data ; else loading">
     <div class="flex flex-col p-10 w-full">
       <!-- github name and profile pic -->
       <div class="flex w-full">
@@ -14,39 +12,31 @@
           <p>{{userProfile.twitter_username}}</p>
         </div> 
       </div>
-  
       <!-- github link -->
       <div class="flex w-full mt-10 pb-2 border-b-2 border-gray-300">
         <p>{{userProfile.html_url}}</p>
       </div>
-  
       <!-- List repos -->
       <div class="flex flex-wrap w-full justify-start mt-10">
   
         <div  *ngFor="let repo of data " class="flex flex-col w-2/5 h-auto m-2 border-2 border-gray-400 p-2 ">
           <h1 class="font-bold text-xl text-blue-500 h-auto">{{repo.name}}</h1>
           <p class="mt-2 mb-2 text-gray-700 h-32 text-xs">{{repo.description}}</p>
-          <div class="flex w-full mt-2 mb-2">
+          <div class="flex w-full mt-2 mb-2 flex-wrap">
             <span *ngFor="let topic of repo.topics" >
-              <span class="mr-2 bg-blue-400 rounded-sm text-white p-1 text-sm text-center">{{topic}}</span>
+              <span class="m-1 bg-blue-400 rounded-sm text-white p-1 text-sm text-center">{{topic}}</span>
             </span>
           </div>
         </div>
-      
       </div>
-  
     </div>
-  
-  
     <!-- Pagination -->
     <div class="flex flex-col w-full justify-start items-center">
-  
       <div id="pagination" class="flex w-96 justify-start overflow-x-scroll">
         <div  *ngFor="let btn of range">
           <button  (click)="getPaginationData(btn)" class="bg-black p-1 w-14 m-1 text-sm bg-transparent border-2 border-gray-400">{{btn}}</button>
         </div>
       </div> 
-       
       <div class="flex justify-between w-96 mt-2">
         <button class="rounded-3xl p-2 w-1/3 border-2 border-gray-400 text-sm " (click)="handlePrevBtn()" id="prevBtn">
           &lt; pre
@@ -56,22 +46,27 @@
           next &gt;
         </button>
       </div>
-  
-      <div class="flex justify-start w-96 mt-2">
+      <div class="flex justify-between w-96 mt-2">
         <span class="text-gray-600">Showing {{page}} of {{totalPage}} page</span>
+        <div>
+          <label for="perPage">Show per page:</label>
+          <select [(ngModel)]="selectedOption" name="perPage" (click)="getOption()">
+            <option>10</option>
+            <option>25</option>
+            <option>50</option>
+            <option>100</option>
+          </select>
+          </div>
       </div>
     </div>
-  
 </ng-container> 
 
 
 
 
 
-  <ng-template #loading>
-
+<ng-template #loading>
 <div role="status" class=" animate-pulse w-full">
-
   <div class="flex flex-col p-10 w-full">
     <!-- github name and profile pic -->
     <div class="flex w-full">
@@ -84,19 +79,15 @@
         <p class="bg-gray-200 w-72 h-10 m-2"></p>
       </div> 
     </div>
-
     <!-- github link -->
     <div class="flex w-full mt-10 pb-2">
       <p class="bg-gray-200 w-72 h-10 m-2"></p>
     </div>
-
     <!-- List repos -->
     <div class="flex flex-wrap w-full justify-start mt-10">
       <div class="flex flex-col w-2/5 h-60 m-2  bg-gray-200 p-2 "></div>
       <div class="flex flex-col w-2/5 h-60 m-2  bg-gray-200 p-2 "></div>
     </div>
-
   </div>
 </div>
-
-  </ng-template> 
+</ng-template> 

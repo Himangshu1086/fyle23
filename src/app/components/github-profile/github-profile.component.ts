@@ -6,6 +6,7 @@ import { ApiService } from 'src/app/services/api.service';
   templateUrl: './github-profile.component.html',
   styleUrls: ['./github-profile.component.scss'],
 })
+
 export class GithubProfileComponent {
   constructor(private apiService: ApiService) {}
 
@@ -18,6 +19,21 @@ export class GithubProfileComponent {
 
   userProfile: any;
 
+  selectedOption: number;
+
+
+  getOption(){
+    this.per_page = this.selectedOption;
+    this.apiService
+      .getReposListApi(this.user, this.page, this.per_page)
+      .subscribe((res:any) => {
+        this.data = res.body;
+        let linkHeader = res.headers.get('Link')
+        this.totalPage = this.getTotalPages(linkHeader)
+        this.range = Array(this.totalPage).fill(0).map((_, index) => index + 1);
+      })
+  }
+
   ngOnInit() {
     this.user = this.apiService.username;
     this.apiService
@@ -27,11 +43,12 @@ export class GithubProfileComponent {
         let linkHeader = res.headers.get('Link')
         this.totalPage = this.getTotalPages(linkHeader)
         this.range = Array(this.totalPage).fill(0).map((_, index) => index + 1);
-        console.log(this.data)
       })
 
     this.apiService.getUser(this.user).subscribe(res=> this.userProfile = res);
   }
+
+
 
   getPaginationData(page:number){
     console.log(page)
@@ -72,7 +89,6 @@ export class GithubProfileComponent {
     }
   }
 
-
-  
-
 }
+
+
